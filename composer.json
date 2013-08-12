@@ -1,0 +1,16 @@
+{
+    "name": "lavoiesl/php-benchmark",
+    "description": "Tool to compare different functions in PHP",
+    "authors": [
+        {
+            "name": "Sébastien Lavoie",
+            "email": "github@lavoie.sl"
+        }
+    ],
+    "require": {
+
+    },
+    "autoload": {
+        "psr-0": {"Lavoiesl\\PhpBenchmark": "src/"}
+    }
+}

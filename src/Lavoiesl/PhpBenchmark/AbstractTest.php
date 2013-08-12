@@ -25,7 +25,7 @@ abstract class AbstractTest
 
         gc_collect_cycles(); // clear memory before start
 
-        $memory = memory_get_usage();
+        $memory = memory_get_usage(true);
         $time = microtime(true);
 
         for ($i=0; $i < $n; $i++) {
@@ -34,7 +34,7 @@ abstract class AbstractTest
 
         $results = array(
             'time'   => microtime(true) - $time,
-            'memory' => max(0, memory_get_usage() - $memory),
+            'memory' => max(0, memory_get_usage(true) - $memory),
             'n'      => $n,
         );
 

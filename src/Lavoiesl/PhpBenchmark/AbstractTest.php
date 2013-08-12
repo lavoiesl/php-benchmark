@@ -2,32 +2,16 @@
 
 namespace Lavoiesl\PhpBenchmark;
 
-class Test
+abstract class AbstractTest
 {
     /**
      * @var string
      */
     private $name;
 
-    /**
-     * @var \Closure
-     */
-    private $prepare = null;
-
-    /**
-     * @var \Closure
-     */
-    private $run;
-
-    /**
-     * @var \Closure
-     */
-    private $cleanup = null;
-
-    public function __construct($name, \Closure $run)
+    public function __construct($name)
     {
         $this->name = $name;
-        $this->run = $run;
     }
 
     public function getName()
@@ -35,25 +19,9 @@ class Test
         return $this->name;
     }
 
-    public function setPrepare(\Closure $prepare)
-    {
-        $this->prepare = $prepare;
-
-        return $this;
-    }
-
-    private function prepare()
-    {
-        if ($this->prepare) {
-            call_user_func($this->prepare, $this->n);
-        }
-    }
-
     public function run($n = 1)
     {
         $this->prepare();
-
-        $run = $this->run;
 
         gc_collect_cycles(); // clear memory before start
 
@@ -61,7 +29,7 @@ class Test
         $time = microtime(true);
 
         for ($i=0; $i < $n; $i++) {
-            $run();
+            $this->execute();
         }
 
         $results = array(
@@ -75,18 +43,14 @@ class Test
         return $results;
     }
 
-    public function setCleanup(\Closure $cleanup)
+    protected function prepare()
     {
-        $this->cleanup = $cleanup;
-
-        return $this;
     }
 
-    private function cleanup()
+    abstract protected function execute();
+
+    protected function cleanup()
     {
-        if ($this->cleanup) {
-            call_user_func($this->cleanup, $this->n);
-        }
     }
 
     public function guessCount($max_seconds = 1)

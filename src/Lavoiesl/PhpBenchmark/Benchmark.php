@@ -13,7 +13,7 @@ class Benchmark
 
     private $base_results;
 
-    public function addTest(Test $test)
+    public function addTest(AbstractTest $test)
     {
         $this->tests[$test->getName()] = $test;
     }
@@ -24,11 +24,11 @@ class Benchmark
      * 
      * @param string   $name
      * @param \Closure $closure function to execute
-     * @return Test
+     * @return SimpleTest
      */
     public function add($name, \Closure $closure)
     {
-        $test = new Test($name, $closure);
+        $test = new SimpleTest($name, $closure);
         $this->addTest($test);
 
         return $test;
@@ -39,7 +39,7 @@ class Benchmark
      */
     private function warmup()
     {
-        $warmup = new Test('warmup', function(){});
+        $warmup = new SimpleTest('warmup', function(){});
         $warmup->run();
 
         foreach ($this->tests as $test) {

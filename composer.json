@@ -1,6 +1,7 @@
 {
     "name": "lavoiesl/php-benchmark",
     "description": "Tool to compare different functions in PHP",
+    "license": "MIT",
     "authors": [
         {
             "name": "Sébastien Lavoie",

@@ -2,7 +2,7 @@
 
 namespace Lavoiesl\PhpBenchmark;
 
-class SimpleTest extends AbstractTest
+class CommandTest extends AbstractTest
 {
     /**
      * @var \Closure
@@ -19,16 +19,16 @@ class SimpleTest extends AbstractTest
      */
     private $cleanup = null;
 
-    public function __construct($name, \Closure $execute)
+    public function __construct($name, $cmd)
     {
         parent::__construct($name);
 
-        $this->execute = $execute;
+        $this->execute = $cmd;
     }
 
-    public function setPrepare(\Closure $prepare)
+    public function setPrepare($cmd)
     {
-        $this->prepare = $prepare;
+        $this->prepare = $cmd;
 
         return $this;
     }
@@ -36,19 +36,19 @@ class SimpleTest extends AbstractTest
     protected function prepare()
     {
         if ($this->prepare) {
-            call_user_func($this->prepare);
+            exec($this->prepare);
         }
     }
 
     protected function execute()
     {
-        call_user_func($this->execute);
+        exec($this->execute);
     }
 
 
-    public function setCleanup(\Closure $cleanup)
+    public function setCleanup($cmd)
     {
-        $this->cleanup = $cleanup;
+        $this->cleanup = $cmd;
 
         return $this;
     }
@@ -56,7 +56,7 @@ class SimpleTest extends AbstractTest
     protected function cleanup()
     {
         if ($this->cleanup) {
-            call_user_func($this->cleanup);
+            exec($this->cleanup);
         }
     }
 }

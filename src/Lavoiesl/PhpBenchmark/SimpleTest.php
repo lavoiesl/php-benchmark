@@ -56,7 +56,7 @@ class SimpleTest extends AbstractTest
     protected function cleanup()
     {
         if ($this->cleanup) {
-            call_user_func($this->cleanup;
+            call_user_func($this->cleanup);
         }
     }
 }

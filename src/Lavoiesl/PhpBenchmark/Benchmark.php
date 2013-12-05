@@ -179,11 +179,7 @@ class Benchmark
             $min_time = min($min_time, $time);
             $results[$name]['time'] = $time;
 
-            $memory = $result['memory'];
-            $memory -= $this->base_results['memory'];
-            $memory = max(0, $memory);
-            $min_memory = min($min_memory, $memory);
-            $results[$name]['memory'] = $memory;
+            $min_memory = min($min_memory, $results[$name]['memory']);
         }
 
         $output = array();

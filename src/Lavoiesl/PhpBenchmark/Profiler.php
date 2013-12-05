@@ -17,8 +17,8 @@ class Profiler
         $this->start_memory = $this->max_memory = memory_get_usage(true);
         $this->start_time = microtime(true);
 
-        register_tick_function( array( $this, "tick" ) );
         declare(ticks = 1);
+        register_tick_function( array( $this, "tick" ) );
     }
 
     public function tick()

@@ -9,9 +9,13 @@ abstract class AbstractTest
      */
     private $name;
 
+
+    private $profiler;
+
     public function __construct($name)
     {
         $this->name = $name;
+        $this->profiler = new Profiler;
     }
 
     public function getName()
@@ -25,16 +29,17 @@ abstract class AbstractTest
 
         gc_collect_cycles(); // clear memory before start
 
-        $memory = memory_get_usage(true);
-        $time = microtime(true);
+        $this->profiler->start();
 
         for ($i=0; $i < $n; $i++) {
             $this->execute();
         }
 
+        $this->profiler->stop();
+
         $results = array(
-            'time'   => microtime(true) - $time,
-            'memory' => max(0, memory_get_usage(true) - $memory),
+            'time'   => $this->profiler->getTime(),
+            'memory' => $this->profiler->getMemoryUsage(),
             'n'      => $n,
         );
 

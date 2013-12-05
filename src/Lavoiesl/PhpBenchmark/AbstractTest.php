@@ -32,7 +32,9 @@ abstract class AbstractTest
         $this->profiler->start();
 
         for ($i=0; $i < $n; $i++) {
-            $this->execute();
+            // Store the result so it appears in memory profiling
+            $result = $this->execute();
+            unset($result);
         }
 
         $this->profiler->stop();

@@ -42,7 +42,7 @@ class SimpleTest extends AbstractTest
 
     protected function execute()
     {
-        call_user_func($this->execute);
+        return call_user_func($this->execute);
     }
 
 

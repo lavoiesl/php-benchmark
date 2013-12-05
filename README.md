@@ -17,6 +17,14 @@ $benchmark->run();
 
 You can run Benchmark::run(false) to get results without any output
 
+### Notes about memory usage
+
+Memory usage is monitored using register_tick_shutdown but this does not do a good job at analysing small statements since the memory gets cleaned too quickly.
+
+A simple trick to preserve the return value in memory is to store it outside the Closure. 
+
+See [the memory test](tests/memory.php).
+
 ## Output
 
 ```

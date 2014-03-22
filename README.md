@@ -15,11 +15,11 @@ $benchmark->run();
 ?>
 ```
 
-You can run Benchmark::run(false) to get results without any output
+You can run `$benchmark->run(false)` to get results without any output
 
 ### Notes about memory usage
 
-Memory usage is monitored using register_tick_shutdown but this does not do a good job at analysing small statements since the memory gets cleaned too quickly.
+Memory usage is monitored using [`register_tick_function`](http://www.php.net/manual/en/function.register-tick-function.php) but this does not do a good job at analysing small statements since the memory gets cleaned too quickly.
 
 A simple trick is the return the value, the `AbstractTest` stores it temporarily.
 

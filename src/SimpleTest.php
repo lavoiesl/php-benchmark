@@ -35,8 +35,8 @@ class SimpleTest extends AbstractTest
 
     protected function prepare()
     {
-        if ($this->prepare) {
-            call_user_func($this->prepare);
+        if ($prepare = $this->prepare) {
+            $prepare();
         }
     }
 
@@ -55,8 +55,8 @@ class SimpleTest extends AbstractTest
 
     protected function cleanup()
     {
-        if ($this->cleanup) {
-            call_user_func($this->cleanup);
+        if ($cleanup = $this->cleanup) {
+            $cleanup();
         }
     }
 }

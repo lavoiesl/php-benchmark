@@ -43,3 +43,11 @@ sha1    2077 ms       59 %      0 B
 By default, Benchmark will try to find an optimal number of runs so that each test takes a maximum of 2 seconds.
 
 You can change this by forcing it with `$benchmark->setCount($n)` or change the time with `$benchmark->guessCount($max_seconds)`.
+
+## Writing custom tests
+
+You can extend `AbstractTest` and provide your own wrapper.
+
+For an example of this, see the [command test](tests/command.php) and the corresponding [class](src/CommandTest.php).
+
+A full example can be seen here: https://github.com/lavoiesl/php-cache-comparison

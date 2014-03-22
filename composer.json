@@ -12,6 +12,6 @@
 
     },
     "autoload": {
-        "psr-0": {"Lavoiesl\\PhpBenchmark": "src/"}
+        "psr-4": {"Lavoiesl\\PhpBenchmark\\": "src/"}
     }
 }

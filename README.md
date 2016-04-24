@@ -2,6 +2,14 @@
 
 Tool to compare different functions in PHP
 
+## Install
+
+Via Composer
+
+```bash
+composer require lavoiesl/php-benchmark
+```
+
 ## Usage
 
 ```php

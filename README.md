@@ -14,7 +14,7 @@ composer require lavoiesl/php-benchmark
 
 ```php
 <?php
-$benchmark = new Benchmark;
+$benchmark = new \Lavoiesl\PhpBenchmark\Benchmark();
 
 $benchmark->add('md5',   function() { return md5('test');   });
 $benchmark->add('sha1',  function() { return sha1('test');  });

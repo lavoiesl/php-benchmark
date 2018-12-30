@@ -16,26 +16,22 @@ class Util
      *
      * @param  double $number     i.e.: 1280
      * @param  integer $precision i.e.: 1.25 for precision = 2
-     * @param  string  $unit      suffix of the unit, may be empty
-     * @param  integer $factor    change base to 1000 or 1024
-     * @return string  i.e.: 1.25 kB
+     *
+     * @return string  i.e.: 1.25 KiB
      */
-    public static function convertToSI($number, $precision = 2, $unit = 'B', $factor = 1024)
+    public static function convertToSI($number, $precision = 2)
     {
         static $sizes = array(
-            '-3' => 'n',
-            '-2' => 'µ',
-            '-1' => 'm',
-            '0'  => '',
-            '1'  => 'k',
-            '2'  => 'M',
-            '3'  => 'G',
-            '4'  => 'T'
+            '0'  => 'B',
+            '1'  => 'KiB',
+            '2'  => 'MiB',
+            '3'  => 'GiB',
+            '4'  => 'TiB'
         );
 
-        $scale = $number == 0 ? 0 : floor(log($number, $factor));
+        $scale = $number == 0 ? 0 : floor(log($number, 1024));
 
-        return round($number / pow($factor, $scale), $precision) . ' ' . $sizes[$scale] . $unit = 'B';
+        return round($number / pow(1024, $scale), $precision) . ' ' . $sizes[$scale];
     }
 
     public static function relativePerc($min, $value) {
